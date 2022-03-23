@@ -4,13 +4,15 @@ import mongoose from "mongoose";
 import "dotenv/config";
 
 import adminRoutes from "./routes/admin-routes";
+import guestRoutes from "./routes/guest-routes";
 
 const app = express();
 
-app.use(bodyParser);
+// app.use(bodyParser);
 
 app.get("/", (req,res)=>{res.send("Hello")});
-app.get("/api/admin/", adminRoutes);
+app.use("/api/guest/", guestRoutes);
+app.use("/api/admin/", adminRoutes);
 
 // app.use("/api/guest", (req, res, next) => {});
 
