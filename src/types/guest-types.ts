@@ -1,33 +1,32 @@
-export interface NameData {
+import { Document } from "mongoose";
+
+export interface PartnerDocument extends Document {
+  id?: string;
   firstName: string;
   lastName: string;
-  nickName: string | undefined;
-}
-
-export interface contactData {
-  email: string | undefined;
-  phone: string | undefined;
-}
-
-export interface partnerData {
-  name: NameData;
-  isComing: boolean;
+  nickName?: string;
   specialDietRequirements: string[] | [];
 }
 
-export interface childData {
-  name: NameData;
+export interface ChildDocument extends Document {
+  id?: string;
+  firstName: string;
+  lastName: string;
+  nickName?: string;
   age: number;
   specialDietRequirements: string[] | [];
 }
 
-export interface GuestData {
-  id: string;
-  name: NameData;
-  contact: contactData;
+export interface GuestDocument extends Document {
+  id?: string;
+  firstName: string;
+  lastName: string;
+  nickName?: string;
+  email?: string;
+  phone?: string;
   isComing: boolean;
   didReply: boolean;
   specialDietRequirements: string[] | [];
-  partner: partnerData | undefined;
-  children: childData[] | [];
+  partner?: PartnerDocument;
+  children: ChildDocument[] | [];
 }

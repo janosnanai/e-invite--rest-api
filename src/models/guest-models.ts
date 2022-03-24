@@ -2,34 +2,32 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 
-const nameSchema = new Schema({
+const partnerSchema = new Schema({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   nickName: { type: String, required: false },
 });
 
-const contactSchema = new Schema({
-  email: { type: String, required: false },
-  phone: { type: String, required: false },
-});
-
-const partnerSchema = new Schema({
-  name: nameSchema,
-  isComing: { type: Boolean, required: true },
-});
 const childSchema = new Schema({
-  name: nameSchema,
+  firstName: { type: String, required: true },
+  lastName: { type: String, required: true },
+  nickName: { type: String, required: false },
   age: { type: Number, required: true },
 });
 
 const guestSchema = new Schema({
   id: { type: String, required: true, unique: true },
-  name: nameSchema,
-  contact: contactSchema,
+  firstName: { type: String, required: true },
+  lastName: { type: String, required: true },
+  nickName: { type: String, required: false },
+  email: { type: String, required: false },
+  phone: { type: String, required: false },
   isComing: { type: Boolean, required: true },
   didReply: { type: Boolean, required: true },
   partner: partnerSchema,
   children: [childSchema],
 });
 
-export default mongoose.model("Guest", guestSchema);
+export const PartnerModel = mongoose.model("Partner", partnerSchema);
+export const ChildModel = mongoose.model("Child", childSchema);
+export const GuestModel = mongoose.model("Guest", guestSchema);
