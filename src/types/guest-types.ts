@@ -1,32 +1,32 @@
 import { Document } from "mongoose";
 
 export interface PartnerDocument extends Document {
-  id?: string;
   firstName: string;
   lastName: string;
-  nickName?: string;
-  specialDietRequirements: string[] | [];
+  nickName: string | null;
+  specialDiet: string[] | [];
 }
 
 export interface ChildDocument extends Document {
-  id?: string;
   firstName: string;
   lastName: string;
-  nickName?: string;
+  nickName: string | null;
   age: number;
-  specialDietRequirements: string[] | [];
+  specialDiet: string[] | [];
 }
 
 export interface GuestDocument extends Document {
-  id?: string;
+  voucherId: string;
   firstName: string;
   lastName: string;
-  nickName?: string;
-  email?: string;
-  phone?: string;
+  nickName: string | null;
+  email: string;
+  phone: string | null;
   isComing: boolean;
   didReply: boolean;
-  specialDietRequirements: string[] | [];
-  partner?: PartnerDocument;
+  specialDiet: string[] | [];
+  partner: PartnerDocument | null;
   children: ChildDocument[] | [];
+  createdDate: Date;
+  modifiedDate: Date;
 }

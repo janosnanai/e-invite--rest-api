@@ -1,4 +1,3 @@
-import bodyParser from "body-parser";
 import express from "express";
 import mongoose from "mongoose";
 import "dotenv/config";
@@ -8,7 +7,7 @@ import guestRoutes from "./routes/guest-routes";
 
 const app = express();
 
-// app.use(bodyParser);
+app.use(express.json());
 
 app.get("/", (req,res)=>{res.send("Hello")});
 app.use("/api/guest/", guestRoutes);
