@@ -20,7 +20,7 @@ export interface GuestDocument extends Document {
   firstName: string;
   lastName: string;
   nickName: string | null;
-  email: string;
+  email: string | null;
   phone: string | null;
   isComing: boolean;
   didReply: boolean;

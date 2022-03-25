@@ -22,7 +22,7 @@ const guestSchema = new Schema({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   nickName: { type: String, required: false },
-  email: { type: String, required: true, unique: true },
+  email: { type: String, sparse: true, unique: true },
   phone: { type: String, required: false },
   isComing: { type: Boolean, required: true },
   didReply: { type: Boolean, required: true },
