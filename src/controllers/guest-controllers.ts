@@ -41,6 +41,7 @@ export const createGuest = async (
     ...guestData,
     isComing: false,
     didReply: false,
+    specialDiet: [],
     partner: null,
     children: [],
     createdDate,
