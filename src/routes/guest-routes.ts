@@ -2,14 +2,20 @@ import express from "express";
 
 import {
   getGuestByVoucherId,
-  addPartner,
-  addChild,
-  deletePartner,
-  deleteChild,
   updateGuest,
-  updatePartner,
-  updateChild,
 } from "../controllers/guest-controllers";
+
+import {
+  addPartner,
+  updatePartner,
+  deletePartner,
+} from "../controllers/partner-controllers";
+
+import {
+  addChild,
+  deleteChild,
+  updateChild,
+} from "../controllers/child-controllers";
 
 const router = express.Router();
 

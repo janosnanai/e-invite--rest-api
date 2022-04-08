@@ -8,6 +8,7 @@ export interface PartnerDocument extends Document {
 }
 
 export interface ChildDocument extends Document {
+  id: string;
   firstName: string;
   lastName: string;
   nickName: string | null;

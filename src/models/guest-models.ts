@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const partnerSchema = new Schema({
+  id: { type: String, required: true, unique: true },
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   nickName: { type: String, required: false },
@@ -10,6 +11,7 @@ const partnerSchema = new Schema({
 });
 
 const childSchema = new Schema({
+  id: { type: String, required: true, unique: true },
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   nickName: { type: String, required: false },

@@ -4,15 +4,21 @@ import {
   getGuestByVoucherId,
   getGuestList,
   createGuest,
-  addPartner,
-  addChild,
-  deleteGuest,
-  deletePartner,
-  deleteChild,
   updateGuest,
-  updatePartner,
-  updateChild,
+  deleteGuest,
 } from "../controllers/guest-controllers";
+
+import {
+  addPartner,
+  updatePartner,
+  deletePartner,
+} from "../controllers/partner-controllers";
+
+import {
+  addChild,
+  deleteChild,
+  updateChild,
+} from "../controllers/child-controllers";
 
 const router = express.Router();
 
