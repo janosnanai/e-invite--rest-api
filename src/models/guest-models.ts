@@ -31,8 +31,8 @@ const guestSchema = new Schema({
   specialDiet: { type: [String], required: false },
   partner: partnerSchema,
   children: [childSchema],
-  createdDate: { type: Date, required: true },
-  modifiedDate: { type: Date, required: true },
+  createdDate: { type: Number, required: true },
+  modifiedDate: { type: Number, required: true },
 });
 
 export const PartnerModel = mongoose.model("Partner", partnerSchema);
