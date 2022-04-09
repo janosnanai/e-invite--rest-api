@@ -28,6 +28,6 @@ export interface GuestDocument extends Document {
   specialDiet: string[] | [];
   partner: PartnerDocument | null;
   children: ChildDocument[] | [];
-  createdDate: Date;
-  modifiedDate: Date;
+  createdDate: number;
+  modifiedDate: number;
 }

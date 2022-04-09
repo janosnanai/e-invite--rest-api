@@ -30,7 +30,7 @@ export const createGuest = async (
   next: NextFunction
 ) => {
   const voucherId = nanoid();
-  const createdDate = new Date();
+  const createdDate = new Date().getTime();
   const guestData = {
     ...req.body,
     voucherId,
@@ -56,9 +56,9 @@ export const updateGuest = async (
   const guestId = req.params.guest_id;
   const guest = await GuestModel.findOne({ voucherId: guestId });
   for (const k in req.body) {
-    guest[k] = req.body[k]; // memo for future me: only send props that have changed!!
+    guest[k] = req.body[k];
   }
-  guest.modifiedDate = new Date();
+  guest.modifiedDate = new Date().getTime();
   await guest.save();
   res.send(guest);
 };

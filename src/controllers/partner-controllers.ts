@@ -17,7 +17,7 @@ export const addPartner = async (
       ...partnerData,
     });
     guest.partner = partner;
-    guest.modifiedDate = new Date();
+    guest.modifiedDate = new Date().getTime();
     await guest.save();
     res.send(partner);
   }
@@ -37,7 +37,7 @@ export const updatePartner = async (
         partner[k] = req.body[k];
       }
     }
-    guest.modifiedDate = new Date();
+    guest.modifiedDate = new Date().getTime();
     await guest.save();
     res.send(partner);
   }
@@ -52,7 +52,7 @@ export const deletePartner = async (
   const guest = await GuestModel.findOne({ voucherId: guestId });
   if (guest) {
     guest.partner.remove();
-    guest.modifiedDate = new Date();
+    guest.modifiedDate = new Date().getTime();
     await guest.save();
   }
 };

@@ -19,7 +19,7 @@ export const addChild = async (
       id: nanoid(),
     });
     guest.children.push(child);
-    guest.modifiedDate = new Date();
+    guest.modifiedDate = new Date().getTime();
     await guest.save();
     res.send(child);
   }
@@ -39,7 +39,7 @@ export const updateChild = async (
       for (const k in req.body) {
         child[k] = req.body[k];
       }
-      guest.modifiedDate = new Date();
+      guest.modifiedDate = new Date().getTime();
       await guest.save();
       res.send(child);
     }
@@ -60,7 +60,7 @@ export const deleteChild = async (
     );
     if (child) {
       child.remove();
-      guest.modifiedDate = new Date();
+      guest.modifiedDate = new Date().getTime();
       await guest.save();
     }
   }
