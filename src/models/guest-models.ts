@@ -3,20 +3,22 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const partnerSchema = new Schema({
-  id: { type: String, required: true, unique: true },
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   nickName: { type: String, required: false },
-  specialDiet: { type: [String], required: false },
+  foodGlutenFree: { type: Boolean, required: true },
+  foodLactoseFree: { type: Boolean, required: true },
+  foodDiabetic: { type: Boolean, required: true },
 });
 
 const childSchema = new Schema({
-  id: { type: String, required: true, unique: true },
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   nickName: { type: String, required: false },
   age: { type: Number, required: true },
-  specialDiet: { type: [String], required: false },
+  foodGlutenFree: { type: Boolean, required: true },
+  foodLactoseFree: { type: Boolean, required: true },
+  foodDiabetic: { type: Boolean, required: true },
 });
 
 const guestSchema = new Schema({
@@ -28,7 +30,9 @@ const guestSchema = new Schema({
   phone: { type: String, required: false },
   isComing: { type: Boolean, required: true },
   didReply: { type: Boolean, required: true },
-  specialDiet: { type: [String], required: false },
+  foodGlutenFree: { type: Boolean, required: true },
+  foodLactoseFree: { type: Boolean, required: true },
+  foodDiabetic: { type: Boolean, required: true },
   partner: partnerSchema,
   children: [childSchema],
   createdDate: { type: Number, required: true },

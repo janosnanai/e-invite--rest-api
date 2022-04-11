@@ -1,7 +1,5 @@
 import { Request, Response, NextFunction } from "express";
 
-import { nanoid } from "nanoid";
-
 import { GuestModel, PartnerModel } from "../models/guest-models";
 
 export const addPartner = async (
@@ -54,5 +52,6 @@ export const deletePartner = async (
     guest.partner.remove();
     guest.modifiedDate = new Date().getTime();
     await guest.save();
+    res.send();
   }
 };

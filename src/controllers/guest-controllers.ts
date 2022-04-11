@@ -36,7 +36,9 @@ export const createGuest = async (
     voucherId,
     isComing: false,
     didReply: false,
-    specialDiet: [],
+    foodGlutenFree: false,
+    foodLactoseFree: false,
+    foodDiabetic: false,
     children: [],
     createdDate,
     modifiedDate: createdDate,
@@ -71,4 +73,5 @@ export const deleteGuest = async (
   const guestId = req.params.guest_id;
   const guest = await GuestModel.findOne({ voucherId: guestId });
   await guest.remove();
+  res.send();
 };
