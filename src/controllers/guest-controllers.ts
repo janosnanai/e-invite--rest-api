@@ -34,6 +34,8 @@ export const createGuest = async (
   const guestData = {
     ...req.body,
     voucherId,
+    email: "",
+    phone: "",
     isComing: false,
     didReply: false,
     foodGlutenFree: false,

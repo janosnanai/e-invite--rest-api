@@ -3,7 +3,7 @@ import { Document } from "mongoose";
 export interface PartnerDocument extends Document {
   firstName: string;
   lastName: string;
-  nickName: string | null;
+  nickName: string;
   foodGlutenFree: boolean;
   foodLactoseFree: boolean;
   foodDiabetic: boolean;
@@ -12,7 +12,7 @@ export interface PartnerDocument extends Document {
 export interface ChildDocument extends Document {
   firstName: string;
   lastName: string;
-  nickName: string | null;
+  nickName: string;
   age: number;
   foodGlutenFree: boolean;
   foodLactoseFree: boolean;
@@ -23,9 +23,9 @@ export interface GuestDocument extends Document {
   voucherId: string;
   firstName: string;
   lastName: string;
-  nickName: string | null;
-  email: string | null;
-  phone: string | null;
+  nickName: string;
+  email: string;
+  phone: string;
   isComing: boolean;
   didReply: boolean;
   foodGlutenFree: boolean;
