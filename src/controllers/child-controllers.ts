@@ -31,7 +31,9 @@ export const updateChild = async (
   const guest = await GuestModel.findOne({ voucherId: guestId });
   if (guest) {
     const childId = req.params.child_id;
-    const child = await ChildModel.findById(childId);
+    const child = guest.children.find(
+      (i: ChildDocument) => i._id.toString() === childId
+    );
     if (child) {
       for (const k in req.body) {
         child[k] = req.body[k];
