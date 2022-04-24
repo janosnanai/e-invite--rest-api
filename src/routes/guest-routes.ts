@@ -1,8 +1,13 @@
+import { ROLES } from "../constants/roles";
+
 import express from "express";
 
 import {
-  getGuestByVoucherId,
+  getGuestById,
+  getGuestList,
+  createGuest,
   updateGuest,
+  deleteGuest,
 } from "../controllers/guest-controllers";
 
 import {
@@ -17,18 +22,77 @@ import {
   updateChild,
 } from "../controllers/child-controllers";
 
+import { authenticateToken, checkRole } from "../middleware/auth";
+import { checkPerm } from "../middleware/perm";
+
 const router = express.Router();
 
-router.get("/:guest_id", getGuestByVoucherId);
+router.use(authenticateToken);
 
-router.post("/:guest_id/partner", addPartner);
-router.post("/:guest_id/children", addChild);
+// GET
+router.get("/", checkRole([ROLES.ADMIN]), getGuestList);
 
-router.patch("/:guest_id", updateGuest);
-router.patch("/:guest_id/partner", updatePartner);
-router.patch("/:guest_id/children/:child_id", updateChild);
+router.get(
+  "/:guest_id",
+  checkRole([ROLES.GUEST, ROLES.ADMIN]),
+  checkPerm,
+  getGuestById
+);
 
-router.delete("/:guest_id/partner", deletePartner);
-router.delete("/:guest_id/children/:child_id", deleteChild);
+// POST
+router.post("/", checkRole([ROLES.ADMIN]), createGuest);
+
+router.post(
+  "/:guest_id/partner",
+  checkRole([ROLES.GUEST, ROLES.ADMIN]),
+  checkPerm,
+  addPartner
+);
+
+router.post(
+  "/:guest_id/children",
+  checkRole([ROLES.GUEST, ROLES.ADMIN]),
+  checkPerm,
+  addChild
+);
+
+// PATCH
+router.patch(
+  "/:guest_id",
+  checkRole([ROLES.GUEST, ROLES.ADMIN]),
+  checkPerm,
+  updateGuest
+);
+
+router.patch(
+  "/:guest_id/partner",
+  checkRole([ROLES.GUEST, ROLES.ADMIN]),
+  checkPerm,
+  updatePartner
+);
+
+router.patch(
+  "/:guest_id/children/:child_id",
+  checkRole([ROLES.GUEST, ROLES.ADMIN]),
+  checkPerm,
+  updateChild
+);
+
+// DELETE
+router.delete("/:guest_id", checkRole([ROLES.ADMIN]), deleteGuest);
+
+router.delete(
+  "/:guest_id/partner",
+  checkRole([ROLES.GUEST, ROLES.ADMIN]),
+  checkPerm,
+  deletePartner
+);
+
+router.delete(
+  "/:guest_id/children/:child_id",
+  checkRole([ROLES.GUEST, ROLES.ADMIN]),
+  checkPerm,
+  deleteChild
+);
 
 export default router;

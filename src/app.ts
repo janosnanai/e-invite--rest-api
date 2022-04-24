@@ -1,14 +1,15 @@
 import express from "express";
 import mongoose from "mongoose";
+import cors from "cors";
 import "dotenv/config";
 
-import adminRoutes from "./routes/admin-routes";
+import authRoutes from "./routes/auth-routes";
 import guestRoutes from "./routes/guest-routes";
 
 const app = express();
 
 app.use(express.json());
-
+app.use(cors());
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -19,11 +20,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/", (req, res) => {
-  res.send("Hello");
-});
+app.use("/api/login", authRoutes);
 app.use("/api/guest/", guestRoutes);
-app.use("/api/admin/", adminRoutes);
 
 mongoose
   .connect(
