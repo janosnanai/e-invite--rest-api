@@ -1,10 +1,17 @@
 import express from "express";
 
-import { userLogin, adminLogin } from "../controllers/auth-controllers";
+import {
+  userLogin,
+  adminLogin,
+  refreshAccessToken,
+  logout,
+} from "../controllers/auth-controllers";
 
 const router = express.Router();
 
-router.post("/admin", adminLogin);
-router.post("/user", userLogin);
+router.post("/admin-login", adminLogin);
+router.post("/user-login", userLogin);
+router.post("/token", refreshAccessToken);
+router.post("/logout", logout);
 
 export default router;

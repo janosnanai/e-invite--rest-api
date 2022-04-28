@@ -2,11 +2,11 @@ import { Request, Response, NextFunction } from "express";
 import { ChildDocument } from "../types/guest-types";
 
 import bcrypt from "bcrypt";
+import mongoose from "mongoose";
 
 import HttpError from "../models/http-error";
 import { GuestModel } from "../models/guest-models";
 import { UserAuthModel } from "../models/auth-models";
-import mongoose from "mongoose";
 
 export const getGuestList = async (
   req: Request,

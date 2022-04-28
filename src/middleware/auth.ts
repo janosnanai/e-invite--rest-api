@@ -20,14 +20,16 @@ export const authenticateToken = async (
       token,
       process.env.ACCESS_TOKEN_SECRET!,
       (err: any, payload: any) => {
-        if (err) return res.sendStatus(403);
+        if (err) {
+          return res.sendStatus(401);
+        }
         req.user = { id: payload!.id, role: payload!.role };
+        next();
       }
     );
   } catch (err) {
     return next(err);
   }
-  next();
 };
 
 export const checkRole = (roles: string[]) => {
@@ -37,7 +39,7 @@ export const checkRole = (roles: string[]) => {
       userRole = req.user.role;
     }
     if (!roles.includes(userRole)) {
-      return res.sendStatus(401);
+      return res.sendStatus(403);
     }
     next();
   };
