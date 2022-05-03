@@ -154,7 +154,9 @@ export const updateGuest = async (
   let guest;
 
   try {
-    guest = await GuestModel.findById(guestId);
+    guest = await GuestModel.findById(guestId)
+      .populate("partner")
+      .populate("children");
   } catch (err) {
     const error = new HttpError(
       "something went wrong, please try again later",
