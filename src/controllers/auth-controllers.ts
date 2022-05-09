@@ -30,7 +30,6 @@ export const userLogin = async (
   next: NextFunction
 ) => {
   const { voucherId, voucherPass } = req.body;
-
   let existingUser;
 
   try {
@@ -65,10 +64,15 @@ export const userLogin = async (
   let accessToken;
   let refreshToken;
 
+  await existingUser.populate("guest");
+  const guestId = existingUser.guest.id;
+
   try {
-    accessToken = generateAccessToken(existingUser.guest._id, ROLES.GUEST);
-    refreshToken = generateRefreshToken(existingUser.guest._id, ROLES.GUEST);
-    const newRefreshToken = new RefreshTokenModel({ refreshToken });
+    accessToken = generateAccessToken(guestId, ROLES.GUEST);
+    refreshToken = generateRefreshToken(guestId, ROLES.GUEST);
+
+    const newRefreshToken = new RefreshTokenModel({ token: refreshToken });
+
     await newRefreshToken.save();
   } catch (err) {
     const error = new HttpError("login failed, please try again later", 500);
