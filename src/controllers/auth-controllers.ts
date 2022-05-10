@@ -79,7 +79,7 @@ export const userLogin = async (
     return next(error);
   }
 
-  res.status(201).json({ accessToken, refreshToken });
+  res.status(201).json({ guestId , accessToken, refreshToken });
 };
 
 export const adminLogin = async (
