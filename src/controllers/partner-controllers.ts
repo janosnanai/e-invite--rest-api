@@ -90,7 +90,7 @@ export const updatePartner = async (
   let guest;
 
   try {
-    guest = await GuestModel.findById(guestId);
+    guest = await GuestModel.findById(guestId).populate("partner");
   } catch (err) {
     const error = new HttpError(
       "something went wrong, please try again later",
@@ -104,7 +104,7 @@ export const updatePartner = async (
     return next(error);
   }
 
-  const partner = guest.populate("partner").partner;
+  const partner = guest.partner;
 
   if (!partner) {
     const error = new HttpError("could not find partner", 404);
